@@ -11,29 +11,6 @@ import {
 } from 'react-vr';
 
 var styles = {
-<<<<<<< HEAD
-	element: {
-		flex: 1, 
-		flexWrap: 'wrap',
-		layoutOrigin: [0.5, 0.5]
-	},
-	centreElement: {
-		backgroundColor: '#ddd',
-		padding: 1,
-		minWidth: 16,
-		minHeight: 10,
-	},
-	centreTextElement: {
-		color: 'black',
-		fontSize: 1,
-	},
-	sideElement: {
-		fontSize: 1,
-		color: 'white',
-		minWidth: 12,
-		minHeight: 4
-	}
-=======
   element: {
     flex: 1, 
     flexWrap: 'wrap',
@@ -55,7 +32,6 @@ var styles = {
     minWidth: 12,
     minHeight: 4
   }
->>>>>>> 497692e185063c987b4f844e62732e58da21e4d3
 }
 
 export default class HelloWorld extends React.Component {
@@ -71,7 +47,11 @@ export default class HelloWorld extends React.Component {
     display: "",
     definition: false,
     startup: true,
-    background: "future.jpg"
+    background: "future.jpg",
+    questionLength: 0,
+    correctcount: 0,
+    incorrectcount: 0,
+    incorrect: false,
     };
   }
 
@@ -95,7 +75,8 @@ export default class HelloWorld extends React.Component {
     if (this.state.startup){
     this.setState({
         startup: false,
-        display: this.state.result.terms[this.state.index].term
+        display: this.state.result.terms[this.state.index].term,
+        questionLength: this.state.result.terms.length
         });
 }
 
@@ -118,25 +99,11 @@ export default class HelloWorld extends React.Component {
             textAlignVertical: 'center',
             transform: [{translate: [0, 4, -3]}],
           }}
-<<<<<<< HEAD
-        >
-        <Text
-            onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
-            style={{
-              ...styles.element,
-              ...styles.sideElement,
-              transform: [
-                {translate: [-5,0,-30]},
-              ],
-              layoutOrigin: [0.5, 0.5],
-            paddingLeft: 0.2,
-            paddingRight: 0.2,
-            textAlign: 'center',
-            textAlignVertical: 'center',
-            }}
-=======
-          onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
->>>>>>> 497692e185063c987b4f844e62732e58da21e4d3
+          onEnter={() => this.setState({
+            display: this.state.result.terms[this.state.index].definition,
+            incorrectcount : this.state.incorrectcount+1,
+            incorrect: true
+             })}
           >
           Answer
         </Text>
@@ -150,11 +117,8 @@ export default class HelloWorld extends React.Component {
               layoutOrigin: [0.5, 0.5],
             paddingLeft: 0.2,
             paddingRight: 0.2,
-<<<<<<< HEAD
-=======
             maxWidth: 20,
             minWidth: 20,
->>>>>>> 497692e185063c987b4f844e62732e58da21e4d3
             textAlign: 'center',
             textAlignVertical: 'center',
             }}>
@@ -165,40 +129,33 @@ export default class HelloWorld extends React.Component {
             >
               {this.state.display}
             </Text>
-          </View>
-<<<<<<< HEAD
-          <Text
-            onEnter={() => this.setState({
-              index: this.state.index+1,
-              display: this.state.result.terms[this.state.index+1].term})}
+            <Text
             style={{
               ...styles.textElement,
-              ...styles.sideElement,
-              transform: [
-                {translate: [5,0,-30]},
-              ],
-              layoutOrigin: [0.5, 0.5],
-=======
+              ...styles.centreTextElement,
+            }}
+          >
+            Incorrect: {this.state.incorrectcount} Correct: {this.state.correctcount}
+          </Text>
+          </View>
         <Text
           style={{
             backgroundColor: '#777879',
             color: this.state.textColor,
             fontSize: 0.8,
             layoutOrigin: [0.5, 0.5],
->>>>>>> 497692e185063c987b4f844e62732e58da21e4d3
             paddingLeft: 0.2,
             paddingRight: 0.2,
             textAlign: 'center',
             textAlignVertical: 'center',
-<<<<<<< HEAD
-            }}
-=======
             transform: [{translate: [0, 7, -6]}],
           }}
           onEnter={() => this.setState({
             index: this.state.index+1,
-            display: this.state.result.terms[this.state.index+1].term})}
->>>>>>> 497692e185063c987b4f844e62732e58da21e4d3
+            display: this.state.index==this.state.questionLength-1? "Complete!" : this.state.result.terms[this.state.index+1].term,
+            correctcount: this.state.incorrect? this.state.correctcount : this.state.correctcount+1,
+            incorrect : false
+          })}
           >
           {this.state.righttext}
         </Text>
@@ -206,14 +163,6 @@ export default class HelloWorld extends React.Component {
             onEnter={() => this.setState({
               background: backgrounds[this.getRandomInt(0, 7)] })}
             style={{
-<<<<<<< HEAD
-              ...styles.textElement,
-              ...styles.sideElement,
-              transform: [
-                {translate: [0, -5, -30]},
-              ],
-            }}
-=======
             backgroundColor: '#777879',
             color: this.state.textColor,
             fontSize: 0.8,
@@ -222,15 +171,14 @@ export default class HelloWorld extends React.Component {
             paddingRight: 0,
             paddingTop: 0.1,
             paddingBottom: 0.1,
-            // textAlign: 'center',
-            // textAlignVertical: 'center',
-            transform: [{translate: [20, 12, -6]},
-            {rotateY: "-20deg"}],
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            transform: [{translate: [20, 12, -6]}],
           }}
->>>>>>> 497692e185063c987b4f844e62732e58da21e4d3
           >
             {this.state.bottomtext}
           </Text>
+
       </View>
     );
   }

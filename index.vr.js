@@ -24,7 +24,7 @@ var styles = {
   },
   centreTextElement: {
     color: 'black',
-    fontSize: 1,
+    fontSize: 2,
   },
   sideElement: {
     fontSize: 1,
@@ -92,11 +92,11 @@ export default class HelloWorld extends React.Component {
             paddingRight: 0.2,
             textAlign: 'center',
             textAlignVertical: 'center',
-            transform: [{translate: [0, 5, -3]}],
+            transform: [{translate: [0, 4, -3]}],
           }}
           onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
           >
-          Yes, I know it.
+          Answer
         </Text>
         <View
             style={{
@@ -108,6 +108,8 @@ export default class HelloWorld extends React.Component {
               layoutOrigin: [0.5, 0.5],
             paddingLeft: 0.2,
             paddingRight: 0.2,
+            maxWidth: 20,
+            minWidth: 20,
             textAlign: 'center',
             textAlignVertical: 'center',
             }}>
@@ -151,7 +153,7 @@ export default class HelloWorld extends React.Component {
             paddingBottom: 0.1,
             textAlign: 'center',
             textAlignVertical: 'center',
-            transform: [{translate: [22, 12, -6]}],
+            transform: [{translate: [20, 12, -6]}],
           }}
           >
             {this.state.bottomtext}

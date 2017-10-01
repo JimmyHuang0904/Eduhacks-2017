@@ -76,7 +76,7 @@ export default class FlashCards extends React.Component {
               ...styles.element,
               ...styles.sideElement,
               transform: [
-                {translate: [-20, 0, -20]},
+                {translate: [-10, 15, -20]},
                 {rotateY: "+20deg"}
               ],
             }}
@@ -88,7 +88,7 @@ export default class FlashCards extends React.Component {
               ...styles.element,
               ...styles.centreElement,
               transform: [
-                {translate: [0, 0, -20]}
+                {translate: [-5, 0, -20]}
               ],
             }}>
             <Text
@@ -107,7 +107,7 @@ export default class FlashCards extends React.Component {
               ...styles.textElement,
               ...styles.sideElement,
               transform: [
-                {translate: [+15, 0, -20]},
+                {translate: [-3, 15, -20]},
                 {rotateY: "-25deg"}
               ],
             }}

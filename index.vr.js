@@ -12,7 +12,7 @@ import {
   Image
 } from 'react-vr';
 
-export default class HelloWorld extends React.Component {
+export default class FlashCards extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -68,7 +68,7 @@ export default class HelloWorld extends React.Component {
             fontSize: 2,
             layoutOrigin: [0.5, 0.5],
             transform: [
-              {translate: [+50, 0, -20]}
+              {translate: [+20, 0, -20]},
             ],
             color: 'white',
             flex: 1, 
@@ -98,4 +98,4 @@ export default class HelloWorld extends React.Component {
   }
 }
 
-AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
+AppRegistry.registerComponent('HelloWorld', () => FlashCards);

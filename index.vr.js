@@ -47,7 +47,11 @@ export default class HelloWorld extends React.Component {
     display: "",
     definition: false,
     startup: true,
-    background: "future.jpg"
+    background: "future.jpg",
+    questionLength: 0,
+    correctcount: 0,
+    incorrectcount: 0,
+    incorrect: false,
     };
   }
 
@@ -71,7 +75,8 @@ export default class HelloWorld extends React.Component {
     if (this.state.startup){
     this.setState({
         startup: false,
-        display: this.state.result.terms[this.state.index].term
+        display: this.state.result.terms[this.state.index].term,
+        questionLength: this.state.result.terms.length
         });
 }
 
@@ -94,7 +99,11 @@ export default class HelloWorld extends React.Component {
             textAlignVertical: 'center',
             transform: [{translate: [0, 4, -3]}],
           }}
-          onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
+          onEnter={() => this.setState({
+            display: this.state.result.terms[this.state.index].definition,
+            incorrectcount : this.state.incorrectcount+1,
+            incorrect: true
+             })}
           >
           Answer
         </Text>
@@ -120,6 +129,14 @@ export default class HelloWorld extends React.Component {
             >
               {this.state.display}
             </Text>
+            <Text
+            style={{
+              ...styles.textElement,
+              ...styles.centreTextElement,
+            }}
+          >
+            Incorrect: {this.state.incorrectcount} Correct: {this.state.correctcount}
+          </Text>
           </View>
         <Text
           style={{
@@ -135,7 +152,10 @@ export default class HelloWorld extends React.Component {
           }}
           onEnter={() => this.setState({
             index: this.state.index+1,
-            display: this.state.result.terms[this.state.index+1].term})}
+            display: this.state.index==this.state.questionLength-1? "Complete!" : this.state.result.terms[this.state.index+1].term,
+            correctcount: this.state.incorrect? this.state.correctcount : this.state.correctcount+1,
+            incorrect : false
+          })}
           >
           {this.state.righttext}
         </Text>
@@ -151,14 +171,14 @@ export default class HelloWorld extends React.Component {
             paddingRight: 0,
             paddingTop: 0.1,
             paddingBottom: 0.1,
-            // textAlign: 'center',
-            // textAlignVertical: 'center',
-            transform: [{translate: [20, 12, -6]},
-            {rotateY: "-20deg"}],
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            transform: [{translate: [20, 12, -6]}],
           }}
           >
             {this.state.bottomtext}
           </Text>
+
       </View>
     );
   }

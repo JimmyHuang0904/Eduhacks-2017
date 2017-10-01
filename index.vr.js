@@ -135,7 +135,7 @@ export default class HelloWorld extends React.Component {
               ...styles.centreTextElement,
             }}
           >
-            Incorrect: {this.state.incorrectcount} Correct: {this.state.correctcount}
+            Incorrect: {Math.ceil(this.state.incorrectcount/2)} Correct: {Math.ceil(this.state.correctcount/2)}
           </Text>
           </View>
         <Text

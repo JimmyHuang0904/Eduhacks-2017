@@ -171,7 +171,8 @@ export default class HelloWorld extends React.Component {
             paddingBottom: 0.1,
             textAlign: 'center',
             textAlignVertical: 'center',
-            transform: [{translate: [20, 12, -6]}],
+            transform: [{translate: [20, 12, -6]},
+            {rotateY: "-20deg"}],
           }}
           >
             {this.state.bottomtext}

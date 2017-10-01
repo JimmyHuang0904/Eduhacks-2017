@@ -139,7 +139,7 @@ return (
               ...styles.textElement,
               ...styles.sideElement,
               transform: [
-                {translate: [-5, 20, -20]},
+                {translate: [-5, -15, -20]},
                 {rotateY: "-25deg"}
               ],
             }}

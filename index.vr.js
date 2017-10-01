@@ -21,12 +21,22 @@ export default class HelloWorld extends React.Component {
       index:0,
       lefttext: "DEFINITION",
       righttext: "NEXT",
-      display: this.state.result.terms[this.state.index].term,
-      definition: false
+      display: "",
+      definition: false,
+      startup: true
     }
   }
   
   render() {
+    console.log(this.state.display)
+    console.log(this.state.result)
+    if (this.state.startup){
+    this.setState({
+      startup: false,
+      display: this.state.result.terms[this.state.index].term
+    })
+    }
+    
     return (
       <View
       >
@@ -56,7 +66,7 @@ export default class HelloWorld extends React.Component {
       <Text
       onEnter={() => this.setState({
         index: this.state.index+1,
-        display: this.state.result.terms[this.state.index].term})}
+        display: this.state.result.terms[this.state.index+1].term})}
       style={{
         fontSize: 2,
         layoutOrigin: [0.5, 0.5],

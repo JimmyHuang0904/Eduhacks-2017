@@ -21,11 +21,21 @@ export default class HelloWorld extends React.Component {
       index:0,
       lefttext: "DEFINITION",
       righttext: "NEXT",
+      bottomtext: "CHANGE BACKGROUND",
       display: "",
       definition: false,
       startup: true,
-      background: "future.png"
+      background: "future.jpg"
     }
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+  
+  render() {
     var backgrounds = [
       "black.jpg",
       "whiteroom.jpg",
@@ -35,17 +45,6 @@ export default class HelloWorld extends React.Component {
       "htc.jpg",
       "stars.png"
     ]
-  }
-
-  getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
-  
-  render() {
-    console.log(this.state.display)
-    console.log(this.state.result)
     if (this.state.startup){
     this.setState({
       startup: false,
@@ -113,18 +112,18 @@ export default class HelloWorld extends React.Component {
       </View>
 
       <Text
-        onEnter={() => this.setState({background: backgrounds[Math.floor((Math.random() * 10) + 1)] })}
+        onEnter={() => this.setState({background: backgrounds[this.getRandomInt(0, 7)] })}
         style={{
         fontSize: 2,
         layoutOrigin: [0.5, 0.5],
         transform: [
-          {translate: [-50, 0, -20]}
+          {translate: [0, 20, -20]}
         ],
         color: 'white',
         flex: 1, 
         flexWrap: 'wrap'
       }}>
-      {this.state.lefttext}
+      {this.state.bottomtext}
       </Text>
       </View>
     );

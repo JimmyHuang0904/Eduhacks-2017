@@ -28,77 +28,74 @@ export default class HelloWorld extends React.Component {
   }
   
   render() {
-    console.log(this.state.display)
-    console.log(this.state.result)
     if (this.state.startup){
-    this.setState({
-      startup: false,
-      display: this.state.result.terms[this.state.index].term
-    })
+      this.setState({
+        startup: false,
+        display: this.state.result.terms[this.state.index].term
+      });
     }
     
     return (
-      <View
-      >
-      <PointLight
-      style={{color: 'white', transform: [{translate: [0, 400, 700]}]}}
-      />
-      <Pano source={asset('chess-world.jpg')} />
-      <View
-      style={{
-        flexDirection:'row',
-        width: 40,
-        flexGrow: 1,
-      }}>
-      <Text
-      style={{
-        fontSize: 2,
-        layoutOrigin: [0.5, 0.5],
-        transform: [
-          {translate: [0, 0, -20]}
-        ],
-        color: 'white',
-        flex: 1, 
-        flexWrap: 'wrap'
-      }}>
-      {this.state.display}
-      </Text>
-      <Text
-      onEnter={() => this.setState({
-        index: this.state.index+1,
-        display: this.state.result.terms[this.state.index+1].term})}
-      style={{
-        fontSize: 2,
-        layoutOrigin: [0.5, 0.5],
-        transform: [
-          {translate: [+50, 0, -20]}
-        ],
-        color: 'white',
-        flex: 1, 
-        flexWrap: 'wrap'
-      }}>
+      <View>
+        <PointLight style={{color: 'white', transform: [{translate: [0, 400, 700]}]}} />
+        <Pano source={asset('chess-world.jpg')} />
+        <View
+          style={{
+            flexDirection:'row',
+            width: 40,
+            flexGrow: 1,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 2,
+              layoutOrigin: [0.5, 0.5],
+              transform: [
+                {translate: [0, 0, -20]}
+              ],
+              color: 'white',
+              flex: 1, 
+              flexWrap: 'wrap'
+            }}
+          >
+            {this.state.display}
+          </Text>
+          <Text
+            onEnter={() => this.setState({
+              index: this.state.index+1,
+              display: this.state.result.terms[this.state.index+1].term})}
+            style={{
+            fontSize: 2,
+            layoutOrigin: [0.5, 0.5],
+            transform: [
+              {translate: [+50, 0, -20]}
+            ],
+            color: 'white',
+            flex: 1, 
+            flexWrap: 'wrap'
+            }}
+          >
             {this.state.righttext}
-      </Text>
-<Text
-        onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
-        style={{
-        fontSize: 2,
-        layoutOrigin: [0.5, 0.5],
-        transform: [
-          {translate: [-50, 0, -20]}
-        ],
-        color: 'white',
-        flex: 1, 
-        flexWrap: 'wrap'
-      }}>
-      {this.state.lefttext}
-      </Text>
-      
-      </View>
+          </Text>
+          <Text
+            onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
+            style={{
+              fontSize: 2,
+              layoutOrigin: [0.5, 0.5],
+              transform: [
+                {translate: [-50, 0, -20]}
+              ],
+              color: 'white',
+              flex: 1, 
+              flexWrap: 'wrap'
+            }}
+          >
+            {this.state.lefttext}
+          </Text>
+        </View>
       </View>
     );
   }
 }
-
 
 AppRegistry.registerComponent('HelloWorld', () => HelloWorld);

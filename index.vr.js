@@ -26,10 +26,10 @@ var styles = {
 	},
 	centreTextElement: {
 		color: 'black',
-		fontSize: 2,
+		fontSize: 1,
 	},
 	sideElement: {
-		fontSize: 2,
+		fontSize: 1,
 		color: 'white',
 		minWidth: 12,
 		minHeight: 4
@@ -94,9 +94,13 @@ return (
               ...styles.element,
               ...styles.sideElement,
               transform: [
-                {translate: [-10, 15, -20]},
-                {rotateY: "+20deg"}
+                {translate: [-5,0,-30]},
               ],
+              layoutOrigin: [0.5, 0.5],
+            paddingLeft: 0.2,
+            paddingRight: 0.2,
+            textAlign: 'center',
+            textAlignVertical: 'center',
             }}
           >
             {this.state.lefttext}
@@ -106,8 +110,13 @@ return (
               ...styles.element,
               ...styles.centreElement,
               transform: [
-                {translate: [-5, 0, -20]}
+                {translate: [0, 0, -30]}
               ],
+              layoutOrigin: [0.5, 0.5],
+            paddingLeft: 0.2,
+            paddingRight: 0.2,
+            textAlign: 'center',
+            textAlignVertical: 'center',
             }}>
             <Text
               style={{
@@ -125,9 +134,13 @@ return (
               ...styles.textElement,
               ...styles.sideElement,
               transform: [
-                {translate: [-3, 15, -20]},
-                {rotateY: "-25deg"}
+                {translate: [5,0,-30]},
               ],
+              layoutOrigin: [0.5, 0.5],
+            paddingLeft: 0.2,
+            paddingRight: 0.2,
+            textAlign: 'center',
+            textAlignVertical: 'center',
             }}
           >
             {this.state.righttext}
@@ -139,8 +152,7 @@ return (
               ...styles.textElement,
               ...styles.sideElement,
               transform: [
-                {translate: [-5, -15, -20]},
-                {rotateY: "-25deg"}
+                {translate: [0, -5, -30]},
               ],
             }}
           >

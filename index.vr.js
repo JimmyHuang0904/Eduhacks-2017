@@ -12,7 +12,31 @@ import {
   Image
 } from 'react-vr';
 
-export default class HelloWorld extends React.Component {
+var styles = {
+  element: {
+    flex: 1, 
+    flexWrap: 'wrap',
+    layoutOrigin: [0.5, 0.5]
+  },
+  centreElement: {
+    backgroundColor: '#ddd',
+    padding: 1,
+    minWidth: 16,
+    minHeight: 10,
+  },
+  centreTextElement: {
+    color: 'black',
+    fontSize: 2,
+  },
+  sideElement: {
+    fontSize: 2,
+    color: 'white',
+    minWidth: 12,
+    minHeight: 4
+  }
+}
+
+export default class FlashCards extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -45,11 +69,12 @@ export default class HelloWorld extends React.Component {
       "htc.jpg",
       "stars.png"
     ]
+    
     if (this.state.startup){
-    this.setState({
-      startup: false,
-      display: this.state.result.terms[this.state.index].term
-    })
+      this.setState({
+        startup: false,
+        display: this.state.result.terms[this.state.index].term
+      });
     }
     
     return (
@@ -125,10 +150,64 @@ export default class HelloWorld extends React.Component {
       }}>
       {this.state.bottomtext}
       </Text>
+      <View>
+        <PointLight style={{color: 'white', transform: [{translate: [0, 400, 700]}]}} />
+        <Pano source={asset('chess-world.jpg')} />
+        <View
+          style={{
+            flexDirection:'row',
+            width: 40,
+            flexGrow: 1,
+          }}
+        >
+        <Text
+            onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
+            style={{
+              ...styles.element,
+              ...styles.sideElement,
+              transform: [
+                {translate: [-20, 0, -20]},
+                {rotateY: "+20deg"}
+              ],
+            }}
+          >
+            {this.state.lefttext}
+          </Text>
+          <View
+            style={{
+              ...styles.element,
+              ...styles.centreElement,
+              transform: [
+                {translate: [0, 0, -20]}
+              ],
+            }}>
+            <Text
+              style={{
+                ...styles.centreTextElement
+              }}
+            >
+              {this.state.display}
+            </Text>
+          </View>
+          <Text
+            onEnter={() => this.setState({
+              index: this.state.index+1,
+              display: this.state.result.terms[this.state.index+1].term})}
+            style={{
+              ...styles.textElement,
+              ...styles.sideElement,
+              transform: [
+                {translate: [+15, 0, -20]},
+                {rotateY: "-25deg"}
+              ],
+            }}
+          >
+            {this.state.righttext}
+          </Text>
+        </View>
       </View>
     );
   }
 }
 
-
-AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
+AppRegistry.registerComponent('HelloWorld', () => FlashCards);

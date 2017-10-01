@@ -9,7 +9,6 @@ function init(bundle, parent, options) {
   const vr = new VRInstance(bundle, 'HelloWorld', parent, {
     // Add custom options here
     ...options,
-    allowCarmelDeeplink : true,
   });
   vr.render = function() {
     // Any custom behavior you want to perform on each frame goes here

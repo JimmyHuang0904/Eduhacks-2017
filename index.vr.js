@@ -23,9 +23,25 @@ export default class HelloWorld extends React.Component {
       righttext: "NEXT",
       display: "",
       definition: false,
-      startup: true
+      startup: true,
+      background: "future.png"
     }
+    var backgrounds = [
+      "black.jpg",
+      "whiteroom.jpg",
+      "chess-world.jpg",
+      "daydream.png",
+      "future.jpg",
+      "htc.jpg",
+      "stars.png"
+    ]
   }
+
+  getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
   
   render() {
     console.log(this.state.display)
@@ -43,7 +59,7 @@ export default class HelloWorld extends React.Component {
       <PointLight
       style={{color: 'white', transform: [{translate: [0, 400, 700]}]}}
       />
-      <Pano source={asset('chess-world.jpg')} />
+      <Pano source={asset(this.state.background)} />
       <View
       style={{
         flexDirection:'row',
@@ -95,6 +111,21 @@ export default class HelloWorld extends React.Component {
       </Text>
       
       </View>
+
+      <Text
+        onEnter={() => this.setState({background: backgrounds[Math.floor((Math.random() * 10) + 1)] })}
+        style={{
+        fontSize: 2,
+        layoutOrigin: [0.5, 0.5],
+        transform: [
+          {translate: [-50, 0, -20]}
+        ],
+        color: 'white',
+        flex: 1, 
+        flexWrap: 'wrap'
+      }}>
+      {this.state.lefttext}
+      </Text>
       </View>
     );
   }

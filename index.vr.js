@@ -45,13 +45,31 @@ export default class FlashCards extends React.Component {
       index:0,
       lefttext: "DEFINITION",
       righttext: "NEXT",
+      bottomtext: "CHANGE BACKGROUND",
       display: "",
       definition: false,
-      startup: true
+      startup: true,
+      background: "future.jpg"
     }
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
   
   render() {
+    var backgrounds = [
+      "black.jpg",
+      "whiteroom.jpg",
+      "chess-world.jpg",
+      "daydream.png",
+      "future.jpg",
+      "htc.jpg",
+      "stars.png"
+    ]
+    
     if (this.state.startup){
       this.setState({
         startup: false,
@@ -60,6 +78,78 @@ export default class FlashCards extends React.Component {
     }
     
     return (
+      <View
+      >
+      <PointLight
+      style={{color: 'white', transform: [{translate: [0, 400, 700]}]}}
+      />
+      <Pano source={asset(this.state.background)} />
+      <View
+      style={{
+        flexDirection:'row',
+        width: 40,
+        flexGrow: 1,
+      }}>
+      <Text
+      style={{
+        fontSize: 2,
+        layoutOrigin: [0.5, 0.5],
+        transform: [
+          {translate: [0, 0, -20]}
+        ],
+        color: 'white',
+        flex: 1, 
+        flexWrap: 'wrap'
+      }}>
+      {this.state.display}
+      </Text>
+      <Text
+      onEnter={() => this.setState({
+        index: this.state.index+1,
+        display: this.state.result.terms[this.state.index+1].term})}
+      style={{
+        fontSize: 2,
+        layoutOrigin: [0.5, 0.5],
+        transform: [
+          {translate: [+50, 0, -20]}
+        ],
+        color: 'white',
+        flex: 1, 
+        flexWrap: 'wrap'
+      }}>
+            {this.state.righttext}
+      </Text>
+<Text
+        onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
+        style={{
+        fontSize: 2,
+        layoutOrigin: [0.5, 0.5],
+        transform: [
+          {translate: [-50, 0, -20]}
+        ],
+        color: 'white',
+        flex: 1, 
+        flexWrap: 'wrap'
+      }}>
+      {this.state.lefttext}
+      </Text>
+      
+      </View>
+
+      <Text
+        onEnter={() => this.setState({background: backgrounds[this.getRandomInt(0, 7)] })}
+        style={{
+        fontSize: 2,
+        layoutOrigin: [0.5, 0.5],
+        transform: [
+          {translate: [0, 20, -20]}
+        ],
+        color: 'white',
+        flex: 1, 
+        flexWrap: 'wrap'
+      }}>
+      {this.state.bottomtext}
+      </Text>
       <View>
         <PointLight style={{color: 'white', transform: [{translate: [0, 400, 700]}]}} />
         <Pano source={asset('chess-world.jpg')} />

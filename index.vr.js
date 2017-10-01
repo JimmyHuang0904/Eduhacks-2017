@@ -7,9 +7,15 @@ import {
   View,
   Model,
   PointLight,
+  Text
 } from 'react-vr';
 
 export default class HelloWorld extends React.Component {
+  constructor() {
+    super();
+    this.state = {textColor: 'white'};
+  }
+
   render() {
     return (
       <View>
@@ -28,6 +34,22 @@ export default class HelloWorld extends React.Component {
           source={{obj: asset('cube2.obj'), mtl: asset('cube2.mtl')}}
           lit
         />
+        <Text
+          style={{
+            backgroundColor: '#777879',
+            color: this.state.textColor,
+            fontSize: 0.8,
+            layoutOrigin: [0.5, 0.5],
+            paddingLeft: 0.2,
+            paddingRight: 0.2,
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            transform: [{translate: [0, 0, -3]}],
+          }}
+          onEnter={() => this.setState({textColor: 'red'})}
+          onExit={() => this.setState({textColor: 'white'})}>
+          {this.state.textColor}
+        </Text>
       </View>
     );
   }

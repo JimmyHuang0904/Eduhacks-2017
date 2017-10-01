@@ -89,7 +89,7 @@ export default class HelloWorld extends React.Component {
         <Pano source={asset(this.state.background)} />
         <Text
           style={{
-            backgroundColor: '#777879',
+            backgroundColor: '#ff5252',
             color: this.state.textColor,
             fontSize: 0.8,
             layoutOrigin: [0.5, 0.5],
@@ -138,7 +138,7 @@ export default class HelloWorld extends React.Component {
           </View>
         <Text
           style={{
-            backgroundColor: '#777879',
+            backgroundColor: '#00c853',
             color: this.state.textColor,
             fontSize: 0.8,
             layoutOrigin: [0.5, 0.5],

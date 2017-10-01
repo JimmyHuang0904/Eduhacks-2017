@@ -12,6 +12,30 @@ import {
   Image
 } from 'react-vr';
 
+var styles = {
+  element: {
+    flex: 1, 
+    flexWrap: 'wrap',
+    layoutOrigin: [0.5, 0.5]
+  },
+  centreElement: {
+    backgroundColor: '#ddd',
+    padding: 1,
+    minWidth: 16,
+    minHeight: 10,
+  },
+  centreTextElement: {
+    color: 'black',
+    fontSize: 2,
+  },
+  sideElement: {
+    fontSize: 2,
+    color: 'white',
+    minWidth: 12,
+    minHeight: 4
+  }
+}
+
 export default class FlashCards extends React.Component {
   constructor(props){
     super(props);
@@ -46,51 +70,47 @@ export default class FlashCards extends React.Component {
             flexGrow: 1,
           }}
         >
-          <Text
+        <Text
+            onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
             style={{
-              fontSize: 2,
-              layoutOrigin: [0.5, 0.5],
+              ...styles.element,
+              ...styles.sideElement,
+              transform: [
+                {translate: [-30, 0, -20]}
+              ],
+            }}
+          >
+            {this.state.lefttext}
+          </Text>
+          <View
+            style={{
+              ...styles.element,
+              ...styles.centreElement,
               transform: [
                 {translate: [0, 0, -20]}
               ],
-              color: 'white',
-              flex: 1, 
-              flexWrap: 'wrap'
-            }}
-          >
-            {this.state.display}
-          </Text>
+            }}>
+            <Text
+              style={{
+                ...styles.centreTextElement
+              }}
+            >
+              {this.state.display}
+            </Text>
+          </View>
           <Text
             onEnter={() => this.setState({
               index: this.state.index+1,
               display: this.state.result.terms[this.state.index+1].term})}
             style={{
-            fontSize: 2,
-            layoutOrigin: [0.5, 0.5],
-            transform: [
-              {translate: [+20, 0, -20]},
-            ],
-            color: 'white',
-            flex: 1, 
-            flexWrap: 'wrap'
+              ...styles.textElement,
+              ...styles.sideElement,
+              transform: [
+                {translate: [+15, 0, -20]}
+              ],
             }}
           >
             {this.state.righttext}
-          </Text>
-          <Text
-            onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
-            style={{
-              fontSize: 2,
-              layoutOrigin: [0.5, 0.5],
-              transform: [
-                {translate: [-50, 0, -20]}
-              ],
-              color: 'white',
-              flex: 1, 
-              flexWrap: 'wrap'
-            }}
-          >
-            {this.state.lefttext}
           </Text>
         </View>
       </View>

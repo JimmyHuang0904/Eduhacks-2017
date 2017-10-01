@@ -13,12 +13,13 @@ import {
 export default class HelloWorld extends React.Component {
   constructor() {
     super();
-    this.state = {textColor: 'white'};
+    this.state = {textColor: 'white', coord: [0.0, 0.0]};
   }
 
   render() {
     return (
-      <View>
+      <View
+        onMove={(offset) => this.setState({coord: offset[0]*10})}>
         <PointLight
           style={{color: 'white', transform: [{translate: [0, 400, 700]}]}}
         />
@@ -44,10 +45,28 @@ export default class HelloWorld extends React.Component {
             paddingRight: 0.2,
             textAlign: 'center',
             textAlignVertical: 'center',
+            transform: [{translate: [0, 5, -3]}],
+          }}
+          onEnter={() => this.setState({textColor: 'red'})}
+          onExit={() => this.setState({textColor: 'white'})}
+          >
+          Yes, I know it.
+        </Text>
+        <Text
+          style={{
+            backgroundColor: '#777879',
+            color: this.state.textColor,
+            fontSize: 0.8,
+            layoutOrigin: [0.5, 0.5],
+            paddingLeft: 0.2,
+            paddingRight: 0.2,
+            textAlign: 'center',
+            textAlignVertical: 'center',
             transform: [{translate: [0, 0, -3]}],
           }}
           onEnter={() => this.setState({textColor: 'red'})}
-          onExit={() => this.setState({textColor: 'white'})}>
+          onExit={() => this.setState({textColor: 'white'})}
+          >
           {this.state.textColor}
         </Text>
       </View>

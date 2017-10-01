@@ -81,7 +81,7 @@ export default class HelloWorld extends React.Component {
         <PointLight
           style={{color: 'white', transform: [{translate: [0, 400, 700]}]}}
         />
-        <Pano source={asset('chess-world.jpg')} />
+        <Pano source={asset(this.state.background)} />
         <Text
           style={{
             backgroundColor: '#777879',
@@ -137,6 +137,25 @@ export default class HelloWorld extends React.Component {
           >
           {this.state.righttext}
         </Text>
+        <Text
+            onEnter={() => this.setState({
+              background: backgrounds[this.getRandomInt(0, 7)] })}
+            style={{
+            backgroundColor: '#777879',
+            color: this.state.textColor,
+            fontSize: 0.8,
+            layoutOrigin: [0.5, 0.5],
+            paddingLeft: 0,
+            paddingRight: 0,
+            paddingTop: 0.1,
+            paddingBottom: 0.1,
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            transform: [{translate: [22, 12, -6]}],
+          }}
+          >
+            {this.state.bottomtext}
+          </Text>
       </View>
     );
   }

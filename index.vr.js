@@ -13,27 +13,36 @@ import {
 } from 'react-vr';
 
 var styles = {
-	element: {
-		flex: 1, 
-		flexWrap: 'wrap',
-		layoutOrigin: [0.5, 0.5]
-	},
-	centreElement: {
-		backgroundColor: '#ddd',
-		padding: 1,
-		minWidth: 16,
-		minHeight: 10,
-	},
-	centreTextElement: {
-		color: 'black',
-		fontSize: 2,
-	},
-	sideElement: {
-		fontSize: 2,
-		color: 'white',
-		minWidth: 12,
-		minHeight: 4
-	}
+  element: {
+    flex: 1, 
+    flexWrap: 'wrap',
+    layoutOrigin: [0.5, 0.5]
+  },
+  centreElement: {
+    // backgroundImage: "url("./static_assets/flashcard.jpg")", why doesnt this fking work
+    backgroundColor: '#eee',
+    padding: 1,
+    minWidth: 18,
+    minHeight: 12,
+  },
+  centreTextElement: {
+    color: 'black',
+    fontSize: 2,
+  },
+  sideElement: {
+    textAlign: 'center',
+    minWidth: 12,
+    height: 8,
+    margin: '5px 0',
+    padding: 1,
+    backgroundColor: '#ccc'
+  },
+  sideTextElement: {
+    textAlign: 'center',
+    color: 'black',
+    fontSize: 2,
+    fontWeight: 400,
+  }
 }
 
 export default class FlashCards extends React.Component {
@@ -88,25 +97,31 @@ return (
             flexGrow: 1,
           }}
         >
-        <Text
+          <View
             onEnter={() => this.setState({display: this.state.result.terms[this.state.index].definition })}
             style={{
               ...styles.element,
               ...styles.sideElement,
               transform: [
-                {translate: [-10, 15, -20]},
-                {rotateY: "+20deg"}
+                {translate: [-20, 0, -20]},
+                {rotateY: "+25deg"}
               ],
             }}
           >
-            {this.state.lefttext}
-          </Text>
+            <Text
+              style={{
+                ...styles.sideTextElement
+              }}
+            >
+              {this.state.lefttext}
+            </Text>
+            </View>
           <View
             style={{
               ...styles.element,
               ...styles.centreElement,
               transform: [
-                {translate: [-5, 0, -20]}
+                {translate: [-10, 0, -20]}
               ],
             }}>
             <Text
@@ -117,35 +132,28 @@ return (
               {this.state.display}
             </Text>
           </View>
-          <Text
+          <View
             onEnter={() => this.setState({
               index: this.state.index+1,
               display: this.state.result.terms[this.state.index+1].term})}
             style={{
-              ...styles.textElement,
+              ...styles.element,
               ...styles.sideElement,
+              backgroundColor: '#00e676',
               transform: [
-                {translate: [-3, 15, -20]},
-                {rotateY: "-25deg"}
+                {translate: [+5, 0, -20]},
+                {rotateY: "-40deg"}
               ],
             }}
           >
-            {this.state.righttext}
-          </Text>
-          <Text
-            onEnter={() => this.setState({
-              background: backgrounds[this.getRandomInt(0, 7)] })}
-            style={{
-              ...styles.textElement,
-              ...styles.sideElement,
-              transform: [
-                {translate: [-5, -15, -20]},
-                {rotateY: "-25deg"}
-              ],
-            }}
-          >
-            {this.state.bottomtext}
-          </Text>
+            <Text
+              style={{
+                ...styles.sideTextElement
+              }}
+            >
+              {this.state.righttext}
+            </Text>
+          </View>
         </View>
       </View>
     );
